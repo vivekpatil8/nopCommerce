@@ -56,16 +56,16 @@ stages:
       inputs:
         action: 'createSecret'
         kubernetesServiceConnection: 'dev'
-        namespace: 'dev'
+        namespace: 'default'
         secretType: 'dockerRegistry'
-        secretName: 'acrsecret'
+        secretName: '$(acrsecret)'
         dockerRegistryEndpoint: 'vamshiacr'
     
-    - task: KubernetesManifest@0
-      inputs:
-        action: 'deploy'
-        kubernetesServiceConnection: 'dev'
-        namespace: 'dev'
-        manifests: 'abc'
-        containers: 'vigneshwarasacr.azurecr.io/acrnop:$(tag)'
-        imagePullSecrets: '$(acrsecret)'
+    # - task: KubernetesManifest@0
+    #   inputs:
+    #     action: 'deploy'
+    #     kubernetesServiceConnection: 'dev'
+    #     namespace: 'dev'
+    #     manifests: 'abc'
+    #     containers: 'vigneshwarasacr.azurecr.io/acrnop:$(tag)'
+    #     imagePullSecrets: '$(acrsecret)'
